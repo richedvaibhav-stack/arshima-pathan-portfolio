@@ -2,16 +2,14 @@ import { useReveal } from "@/hooks/use-reveal";
 
 const groups = [
   {
-    title: "Core",
-    skills: ["Skill 01", "Skill 02", "Skill 03", "Skill 04"],
+    title: "Frontend",
+    subtitle: "Crafting interfaces",
+    skills: ["HTML5", "CSS3", "JavaScript"],
   },
   {
-    title: "Creative",
-    skills: ["Skill 05", "Skill 06", "Skill 07", "Skill 08"],
-  },
-  {
-    title: "Tools",
-    skills: ["Skill 09", "Skill 10", "Skill 11", "Skill 12"],
+    title: "Back-end",
+    subtitle: "Powering the logic",
+    skills: ["Node.js", "Express.js"],
   },
 ];
 
@@ -32,26 +30,32 @@ export function Skills() {
             What I'm <span className="text-gradient">building with</span>
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground">
-            Placeholder skills — swap in real ones whenever you're ready.
+            A focused toolkit for building polished, end-to-end web experiences.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {groups.map((g) => (
             <div
               key={g.title}
-              className="group relative rounded-3xl border border-border bg-card/70 p-6 shadow-soft backdrop-blur transition-all hover:-translate-y-1 hover:shadow-elegant"
+              className="group relative rounded-3xl border border-border bg-card/70 p-6 shadow-soft backdrop-blur transition-all hover:-translate-y-1 hover:shadow-elegant md:p-8"
             >
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-primary opacity-70" />
-              <h3 className="font-display text-xl">{g.title}</h3>
-              <p className="mt-1 text-xs text-muted-foreground">Category placeholder</p>
+              <div className="flex items-baseline justify-between">
+                <h3 className="font-display text-2xl">{g.title}</h3>
+                <span className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">
+                  {g.skills.length} skills
+                </span>
+              </div>
+              <p className="mt-1 text-xs text-muted-foreground">{g.subtitle}</p>
 
-              <div className="mt-5 flex flex-wrap gap-2">
+              <div className="mt-6 flex flex-wrap gap-2.5">
                 {g.skills.map((s) => (
                   <span
                     key={s}
-                    className="rounded-full border border-border bg-background/60 px-3 py-1.5 text-xs font-medium text-foreground/75 transition-colors hover:border-primary/40 hover:text-foreground"
+                    className="group/chip relative inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-4 py-2 text-sm font-medium text-foreground/80 shadow-soft transition-all hover:-translate-y-0.5 hover:border-primary/50 hover:text-foreground hover:shadow-elegant"
                   >
+                    <span className="h-1.5 w-1.5 rounded-full bg-gradient-primary transition-transform group-hover/chip:scale-125" />
                     {s}
                   </span>
                 ))}
