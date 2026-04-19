@@ -18,16 +18,18 @@ export function About() {
         <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-16">
           <div className="space-y-5 text-base leading-relaxed text-foreground/80 md:text-lg">
             <p>
-              Hi, I'm Arshima — a curious mind who loves turning ideas into thoughtful,
-              meaningful experiences. I care about the small details that make work feel
-              warm, useful, and honest.
+              Arshima Pathan is a second-year engineering student specializing in{" "}
+              <span className="font-semibold text-gradient">Data Science</span>, with a
+              growing interest in{" "}
+              <span className="font-semibold text-gradient">Full-Stack Web Development</span>.
+              She enjoys building responsive and user-friendly web applications while
+              continuously improving her technical skills.
             </p>
             <p>
-              This space is a glimpse of my journey so far — what I'm exploring, what I've
-              built, and where I'm headed next. More to come, soon.
-            </p>
-            <p className="text-sm text-muted-foreground italic">
-              ✨ Placeholder intro — easy to replace with your own story.
+              She is currently exploring both frontend and backend technologies and
+              actively working on projects that strengthen her practical understanding of
+              development. Her goal is to build efficient, real-world solutions and grow
+              into a skilled and versatile developer.
             </p>
           </div>
 

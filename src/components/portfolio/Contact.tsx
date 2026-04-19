@@ -1,10 +1,21 @@
-import { Github, Linkedin, Mail, Send } from "lucide-react";
+import { Linkedin, Mail, Send } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
 
 const rows = [
-  { icon: Mail, label: "Email", value: "hello@arshima.dev" },
-  { icon: Linkedin, label: "LinkedIn", value: "linkedin.com/in/arshima" },
-  { icon: Github, label: "GitHub", value: "github.com/arshima" },
+  {
+    icon: Mail,
+    label: "Email",
+    value: "arshimapathan07@gmail.com",
+    href: "mailto:arshimapathan07@gmail.com",
+    external: false,
+  },
+  {
+    icon: Linkedin,
+    label: "LinkedIn",
+    value: "linkedin.com/in/arshima-pathan",
+    href: "https://www.linkedin.com/in/arshima-pathan-3a3248360",
+    external: true,
+  },
 ];
 
 export function Contact() {
@@ -32,24 +43,29 @@ export function Contact() {
             <div className="relative h-full rounded-3xl border border-border bg-card/85 p-8 shadow-soft backdrop-blur md:p-10">
               <h3 className="font-display text-2xl">Get in touch</h3>
               <p className="mt-2 text-sm text-muted-foreground">
-                Placeholder details — swap in your real links.
+                Reach out via email or connect on LinkedIn — happy to chat.
               </p>
 
               <ul className="mt-6 space-y-3">
-                {rows.map(({ icon: Icon, label, value }) => (
-                  <li
-                    key={label}
-                    className="group flex items-center gap-4 rounded-2xl border border-border bg-background/60 p-4 transition-colors hover:border-primary/40"
-                  >
-                    <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-soft text-foreground">
-                      <Icon size={18} />
-                    </span>
-                    <div className="min-w-0 flex-1">
-                      <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">
-                        {label}
-                      </p>
-                      <p className="truncate text-sm text-foreground">{value}</p>
-                    </div>
+                {rows.map(({ icon: Icon, label, value, href, external }) => (
+                  <li key={label}>
+                    <a
+                      href={href}
+                      {...(external
+                        ? { target: "_blank", rel: "noopener noreferrer" }
+                        : {})}
+                      className="group flex items-center gap-4 rounded-2xl border border-border bg-background/60 p-4 transition-all hover:border-primary/40 hover:scale-[1.02]"
+                    >
+                      <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-soft text-foreground transition-colors group-hover:text-primary">
+                        <Icon size={18} />
+                      </span>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">
+                          {label}
+                        </p>
+                        <p className="truncate text-sm text-foreground">{value}</p>
+                      </div>
+                    </a>
                   </li>
                 ))}
               </ul>
