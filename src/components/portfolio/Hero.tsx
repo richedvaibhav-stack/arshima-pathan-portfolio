@@ -1,4 +1,4 @@
-import { ArrowRight, Mail, Sparkles } from "lucide-react";
+import { ArrowRight, Mail, Sparkles, Linkedin } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
 import profilePhoto from "@/assets/arshima-profile.png";
 
@@ -51,11 +51,20 @@ export function Hero() {
               />
             </a>
             <a
-              href="#contact"
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-6 py-3 text-sm font-medium text-foreground backdrop-blur transition-colors hover:bg-card"
+              href="mailto:arshimapathan07@gmail.com"
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-6 py-3 text-sm font-medium text-foreground backdrop-blur transition-all hover:bg-card hover:scale-105"
             >
               <Mail size={16} />
-              Contact
+              Email
+            </a>
+            <a
+              href="https://www.linkedin.com/in/arshima-pathan-3a3248360"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn profile"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card/70 text-foreground backdrop-blur transition-all hover:bg-card hover:scale-110 hover:text-primary"
+            >
+              <Linkedin size={16} />
             </a>
           </div>
         </div>

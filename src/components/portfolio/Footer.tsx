@@ -1,4 +1,19 @@
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Linkedin, Mail } from "lucide-react";
+
+const socials = [
+  {
+    icon: Mail,
+    label: "Email Arshima",
+    href: "mailto:arshimapathan07@gmail.com",
+    external: false,
+  },
+  {
+    icon: Linkedin,
+    label: "LinkedIn profile",
+    href: "https://www.linkedin.com/in/arshima-pathan-3a3248360",
+    external: true,
+  },
+];
 
 export function Footer() {
   return (
@@ -15,12 +30,13 @@ export function Footer() {
         </div>
 
         <div className="flex items-center gap-2">
-          {[Mail, Linkedin, Github].map((Icon, i) => (
+          {socials.map(({ icon: Icon, label, href, external }) => (
             <a
-              key={i}
-              href="#contact"
-              aria-label="Social link"
-              className="grid h-10 w-10 place-items-center rounded-full border border-border bg-card/70 text-foreground/70 transition-colors hover:border-primary/40 hover:text-foreground"
+              key={label}
+              href={href}
+              {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              aria-label={label}
+              className="grid h-10 w-10 place-items-center rounded-full border border-border bg-card/70 text-foreground/70 transition-all hover:border-primary/40 hover:text-primary hover:scale-110"
             >
               <Icon size={16} />
             </a>
