@@ -1,5 +1,6 @@
 import { ArrowRight, Mail, Sparkles } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
+import profilePhoto from "@/assets/arshima-profile.png";
 
 export function Hero() {
   const ref = useReveal<HTMLDivElement>();
@@ -60,14 +61,17 @@ export function Hero() {
         </div>
 
         {/* Avatar */}
-        <div className="relative mx-auto w-full max-w-sm">
-          <div className="absolute -inset-6 rounded-full bg-gradient-primary opacity-30 blur-2xl animate-soft-float" />
-          <div className="relative aspect-square rounded-full bg-gradient-primary p-[3px] shadow-elegant">
-            <div className="relative h-full w-full rounded-full bg-card">
-              <div className="absolute inset-3 rounded-full bg-gradient-soft" />
-              <div className="absolute inset-0 grid place-items-center">
-                <span className="font-display text-7xl text-gradient">AP</span>
-              </div>
+        <div className="group relative mx-auto w-full max-w-sm">
+          <div className="absolute -inset-6 rounded-full bg-gradient-primary opacity-30 blur-2xl animate-soft-float transition-opacity duration-500 group-hover:opacity-50" />
+          <div className="relative aspect-square rounded-full bg-gradient-primary p-[3px] shadow-elegant transition-transform duration-500 group-hover:scale-[1.03]">
+            <div className="relative h-full w-full overflow-hidden rounded-full bg-card">
+              <img
+                src={profilePhoto}
+                alt="Portrait of Arshima Pathan"
+                loading="eager"
+                className="h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                style={{ filter: "contrast(1.05) saturate(1.05) brightness(1.02)" }}
+              />
             </div>
           </div>
           {/* floating dots */}
