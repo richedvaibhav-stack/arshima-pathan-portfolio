@@ -2,16 +2,14 @@ import { useReveal } from "@/hooks/use-reveal";
 
 const groups = [
   {
-    title: "Core",
-    skills: ["Skill 01", "Skill 02", "Skill 03", "Skill 04"],
+    title: "Frontend",
+    subtitle: "Crafting interfaces",
+    skills: ["HTML5", "CSS3", "JavaScript"],
   },
   {
-    title: "Creative",
-    skills: ["Skill 05", "Skill 06", "Skill 07", "Skill 08"],
-  },
-  {
-    title: "Tools",
-    skills: ["Skill 09", "Skill 10", "Skill 11", "Skill 12"],
+    title: "Back-end",
+    subtitle: "Powering the logic",
+    skills: ["Node.js", "Express.js"],
   },
 ];
 
