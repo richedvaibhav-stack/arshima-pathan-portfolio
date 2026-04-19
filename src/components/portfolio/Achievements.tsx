@@ -1,65 +1,163 @@
-import { Award } from "lucide-react";
+import * as React from "react";
+import { Award, X, Building2 } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
 import { cn } from "@/lib/utils";
+import certStbif from "@/assets/cert-stbif.jpeg";
+import certHackstart from "@/assets/cert-hackstart.jpeg";
+import certDeloitte from "@/assets/cert-deloitte.jpeg";
 
-const items = [
-  { date: "20XX", title: "Achievement Title 01", desc: "Short placeholder description of a milestone you'd like to highlight." },
-  { date: "20XX", title: "Achievement Title 02", desc: "Replace with a recognition, certification, or proud moment." },
-  { date: "20XX", title: "Achievement Title 03", desc: "Another milestone worth celebrating — coming soon." },
-  { date: "20XX", title: "Achievement Title 04", desc: "Space saved for what's next on the journey." },
+type Achievement = {
+  image: string;
+  title: string;
+  org: string;
+  desc: string;
+  tag: string;
+};
+
+const items: Achievement[] = [
+  {
+    image: certStbif,
+    title: "Virtual Internship on Wearable Electronics",
+    org: "Suryodaya Technology Business Incubator Foundation (STBIF)",
+    desc: "Completed a virtual internship focused on Arduino programming, sensor interfacing, and real-time data visualization.",
+    tag: "Internship",
+  },
+  {
+    image: certHackstart,
+    title: "Hack-Start 2.0 Hackathon",
+    org: "Codexa Solutions",
+    desc: "Participated in the hackathon class and recognized as “Hack Innovator” for problem-solving and innovative thinking.",
+    tag: "Hackathon",
+  },
+  {
+    image: certDeloitte,
+    title: "Deloitte Cyber Job Simulation",
+    org: "Deloitte (via Forage)",
+    desc: "Completed a cybersecurity job simulation with real-world tasks and practical exposure to core cyber security concepts.",
+    tag: "Simulation",
+  },
 ];
 
 export function Achievements() {
   const ref = useReveal<HTMLDivElement>();
+  const [open, setOpen] = React.useState<Achievement | null>(null);
+
+  React.useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(null);
+    document.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [open]);
+
   return (
     <section id="achievements" className="relative py-24 md:py-32">
-      <div ref={ref} className="reveal mx-auto max-w-5xl px-4">
+      <div ref={ref} className="reveal mx-auto max-w-6xl px-4">
         <div className="mb-14 text-center">
           <p className="text-xs font-medium uppercase tracking-[0.25em] text-primary">
             Achievements
           </p>
           <h2 className="mt-3 font-display text-4xl md:text-5xl">
-            Milestones along the <span className="text-gradient">way</span>
+            Certificates &amp; <span className="text-gradient">recognitions</span>
           </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-sm text-muted-foreground md:text-base">
+            A growing collection of milestones — internships, hackathons, and industry simulations.
+          </p>
         </div>
 
-        <div className="relative">
-          {/* center line */}
-          <div className="absolute left-4 top-0 h-full w-px bg-gradient-to-b from-transparent via-border to-transparent md:left-1/2 md:-translate-x-1/2" />
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {items.map((it) => (
+            <article
+              key={it.title}
+              className="group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-card/80 shadow-soft backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+            >
+              <button
+                type="button"
+                onClick={() => setOpen(it)}
+                className="relative block overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                aria-label={`View ${it.title} certificate`}
+              >
+                <div className="aspect-[4/3] w-full overflow-hidden bg-gradient-soft">
+                  <img
+                    src={it.image}
+                    alt={`${it.title} certificate`}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <span className="pointer-events-none absolute bottom-3 left-3 rounded-full bg-background/90 px-3 py-1 text-xs font-medium text-foreground opacity-0 shadow-soft backdrop-blur transition-opacity duration-300 group-hover:opacity-100">
+                  Click to view
+                </span>
+              </button>
 
-          <ul className="space-y-10">
-            {items.map((it, i) => {
-              const left = i % 2 === 0;
-              return (
-                <li
-                  key={it.title}
-                  className={cn(
-                    "relative grid grid-cols-1 gap-4 md:grid-cols-2",
-                    left ? "md:[&>*:first-child]:pr-10" : "md:[&>*:last-child]:pl-10",
-                  )}
-                >
-                  {/* dot */}
-                  <span className="absolute left-4 top-3 grid h-3 w-3 -translate-x-1/2 place-items-center rounded-full bg-gradient-primary shadow-soft md:left-1/2" />
-
-                  <div className={cn(left ? "md:order-1" : "md:order-2 md:col-start-2")}>
-                    <div className="ml-10 rounded-3xl border border-border bg-card/80 p-6 shadow-soft backdrop-blur transition-transform hover:-translate-y-0.5 md:ml-0">
-                      <div className="flex items-center gap-2">
-                        <span className="rounded-full bg-gradient-soft px-3 py-1 text-xs font-medium text-foreground/80">
-                          {it.date}
-                        </span>
-                        <Award size={14} className="text-primary" />
-                      </div>
-                      <h3 className="mt-3 font-display text-xl">{it.title}</h3>
-                      <p className="mt-2 text-sm text-muted-foreground">{it.desc}</p>
-                    </div>
-                  </div>
-                  <div className={cn("hidden md:block", left ? "md:order-2" : "md:order-1")} />
-                </li>
-              );
-            })}
-          </ul>
+              <div className="flex flex-1 flex-col p-6">
+                <div className="flex items-center gap-2">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-soft px-3 py-1 text-xs font-medium text-foreground/80">
+                    <Award size={12} className="text-primary" />
+                    {it.tag}
+                  </span>
+                </div>
+                <h3 className="mt-3 font-display text-lg leading-snug">{it.title}</h3>
+                <p className="mt-2 flex items-start gap-1.5 text-xs text-muted-foreground">
+                  <Building2 size={12} className="mt-0.5 shrink-0 text-primary/70" />
+                  <span>{it.org}</span>
+                </p>
+                <p className="mt-3 text-sm text-muted-foreground">{it.desc}</p>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
+
+      {open && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${open.title} certificate preview`}
+          onClick={() => setOpen(null)}
+          className={cn(
+            "fixed inset-0 z-[60] flex items-center justify-center bg-background/80 p-4 backdrop-blur-md",
+            "animate-in fade-in duration-200",
+          )}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-5xl overflow-hidden rounded-3xl border border-border bg-card shadow-2xl"
+          >
+            <button
+              type="button"
+              onClick={() => setOpen(null)}
+              aria-label="Close"
+              className="absolute right-3 top-3 z-10 grid h-9 w-9 place-items-center rounded-full bg-background/90 text-foreground shadow-soft backdrop-blur transition-transform hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            >
+              <X size={18} />
+            </button>
+            <div className="bg-gradient-soft">
+              <img
+                src={open.image}
+                alt={`${open.title} certificate full view`}
+                className="mx-auto max-h-[80vh] w-full object-contain"
+              />
+            </div>
+            <div className="border-t border-border p-5">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-soft px-3 py-1 text-xs font-medium text-foreground/80">
+                  <Award size={12} className="text-primary" />
+                  {open.tag}
+                </span>
+                <span className="text-xs text-muted-foreground">{open.org}</span>
+              </div>
+              <h3 className="mt-2 font-display text-xl">{open.title}</h3>
+              <p className="mt-1 text-sm text-muted-foreground">{open.desc}</p>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
