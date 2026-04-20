@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import certStbif from "@/assets/cert-stbif.jpeg";
 import certHackstart from "@/assets/cert-hackstart.jpeg";
 import certDeloitte from "@/assets/cert-deloitte.jpeg";
+import certBe10x from "@/assets/cert-be10x.jpeg";
 
 type Achievement = {
   image: string;
@@ -35,6 +36,13 @@ const items: Achievement[] = [
     org: "Deloitte (via Forage)",
     desc: "Completed a cybersecurity job simulation with real-world tasks and practical exposure to core cyber security concepts.",
     tag: "Simulation",
+  },
+  {
+    image: certBe10x,
+    title: "AI Tools Workshop Certificate",
+    org: "be10x",
+    desc: "Completed an AI Tools & ChatGPT workshop — creating presentations with AI, analyzing data, and coding/debugging with AI assistance.",
+    tag: "AI / Workshop",
   },
 ];
 
